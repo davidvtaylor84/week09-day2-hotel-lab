@@ -5,7 +5,7 @@ const BookingItem = ({booking}) => {
  <div>
   <h2>Guest name: {booking.guestName}</h2>
   <p>Guest email: {booking.guestEmail}</p>
-  <p>Checked in: {booking.checkedIn}</p>
+  <p>Checked in: {booking.checkedIn ? "Yes" : "No"}</p>
  </div>
   )
 }

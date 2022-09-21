@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { getBookings, postBooking, deleteBooking } from '../BookingsService'
 import BookingList from '../components/BookingList'
+import BookingForm from '../components/BookingForm'
 
 
 const BookingContainer = () => {
@@ -14,9 +15,16 @@ const BookingContainer = () => {
         })
     }, []);
 
+    const addBooking = (booking) => {
+        let temp = bookings.map(b => b)
+        temp.push(booking)
+        setBookings(temp)
+    }
+
 
   return (
     <>
+    <BookingForm addBooking={addBooking}/>
     <BookingList bookings={bookings}/>
     </>
     )
