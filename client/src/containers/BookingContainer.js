@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { getBookings, postBooking, deleteBooking } from '../BookingsService'
+import { getBookings, postBooking, deleteBooking as apiDeleteBooking} from '../BookingsService'
 import BookingList from '../components/BookingList'
 import BookingForm from '../components/BookingForm'
 
@@ -21,11 +21,21 @@ const BookingContainer = () => {
         setBookings(temp)
     }
 
+    const deleteBooking = (id) => {
+        apiDeleteBooking(id).then(() => {
+            let temp = bookings.map(b=>b);
+            const toDel = bookings.map(b=>b._id)
+            .indexOf(id);
+            temp.splice(toDel, 1);
+            setBookings(temp)
+        })
+    }
+
 
   return (
     <>
     <BookingForm addBooking={addBooking}/>
-    <BookingList bookings={bookings}/>
+    <BookingList bookings={bookings} deleteBooking={deleteBooking}/>
     </>
     )
 }

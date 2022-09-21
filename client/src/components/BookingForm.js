@@ -15,7 +15,7 @@ const BookingForm = ( {addBooking} ) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(e)
-        let adjustedFormData = 
+        let checkedInValue =  
         postBooking(formData)
         .then((data) => {
             addBooking(data);
